@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+        
+        .progress-container {
+            width: 600px;
+            height: 60px;
+            background: #000000;
+            border: 2px solid #7719ff;
+            border-radius: 15px;
+            padding: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            bottom: 8px;
+            background: #7719ff;
+            border-radius: 12px;
+            width: 0%;
+            animation: fillProgress 4s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            70% { width: calc(100% - 16px); }
+            100% { width: calc(100% - 16px); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .progress-container {
+                width: 80vw;
+                max-width: 500px;
+                height: 50px;
+            }
+            
+            .loading-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <script>
+        // Optional: Auto-restart the animation
+        setInterval(() => {
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.animation = 'none';
+            setTimeout(() => {
+                progressBar.style.animation = 'fillProgress 4s ease-in-out infinite';
+            }, 100);
+        }, 6000);
+    </script>
+</body>
+</html>
